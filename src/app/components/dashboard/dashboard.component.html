@@ -1,0 +1,109 @@
+<nav>
+  <div class="nav-wrapper grey darken-3">
+    <a href="#" class="brand-logo">Service Xpress Volkswagen</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a (click)='authService.SignOut()'>Salir</a></li>      
+    </ul>
+  </div>
+</nav>
+
+<div id="test-swipe-1" class="col s12 grey lighten-2 card">
+  <span class="card-title"><b>Estadísticas</b></span>
+  <div class="row card-content">
+    <div class="col s12 m4">
+      <div class="card center">
+        <span><b>Atención de su Asesor Service Xpress</b></span>
+        <div class="card-content">
+          <canvas baseChart [data]="atencion" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="colors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m4">
+      <div class="card center">
+        <span class="center-align"><b>Seguimiento y comunicación del Asesor Service Xpress a lo largo de la reparación</b></span>
+        <div class="card-content">
+          <canvas baseChart [data]="seguimiento" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="colors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m4">
+      <div class="card center">
+        <span class="center-align"><b>Tiempo que Ud. y/o su vehículo estuvieron en la Concesionaria</b></span>
+        <div class="card-content">
+          <canvas baseChart [data]="tiempo" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="colors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m4">
+      <div class="card center">
+        <span class="center-align"><b>¿Cuál es su nivel de satisfacción con las instalaciones, comodidad, limpieza y
+          amenidades ofrecidas por la concesionaria?</b></span>
+        <div class="card-content">
+          <canvas baseChart [data]="satisfaccion" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="colors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m4">
+      <div class="card center">
+        <span class="center-align"><b>Califique su experiencia del servicio en general recibido en Service Xpress</b></span>
+        <div class="card-content">
+          <canvas baseChart [data]="experiencia" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="colors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m4">
+      <div class="card center">
+        <span class="center-align"><b>Usando la escala de 1 a 10 ¿Qué tan probable es que recomiende Service Xpress de
+          esta concesionaria a un familiar o amigo?</b></span>
+        <div class="card-content">
+          <canvas baseChart [data]="recomendacion" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="colors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m4">
+      <div class="card center">
+        <span class="center"><b>Conoció Service Xpress a travéz de algún medio publicitario</b></span>
+        <div class="card-content">
+          <canvas baseChart [data]="medio" [labels]="pieChartLabels2" [chartType]="pieChartType" [colors]="colors2">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="test-swipe-2" class="col s12 grey lighten-2">
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <span class="card-title"><b>Datos de los Clientes</b></span>
+        <div class="card-content">
+          <table id="dataTable">
+            <thead>
+              <tr>
+                <th>Nombre del Cliente</th>
+                <th>Orden de Servicio</th>
+                <th>Fecha</th>
+                <th>Comentarios</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let survey of Survey | paginate: {itemsPerPage:10,currentPage:p};let i=index;">
+                <td>{{survey.name}}</td>
+                <td>{{survey.order}}</td>
+                <td>{{survey.date}}</td>
+                <td>{{survey.group1d}}{{survey.group3b}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>

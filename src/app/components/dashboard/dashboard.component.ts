@@ -14,6 +14,8 @@ export class DashboardComponent implements OnInit {
   Survey: Survey[];
   hideNoSurvey: boolean = false;
   noData: boolean = false;
+  filter_key = '';
+
   public pieChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   public pieChartLabels2 = ['Radio', 'Facebook', 'Web', 'Email', 'Otro', 'Ninguno'];
   public pieChartType = 'pie';

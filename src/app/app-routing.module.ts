@@ -7,11 +7,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { AuthGuard } from './shared/auth.guard';
 import { SecureInnerPagesGuard } from './shared/secure-inner-pages.guard';
+import { ShowSurveyComponent } from './components/show-survey/show-survey.component';
 
 const routes: Routes = [
   {path: '',redirectTo:'/login',pathMatch:'full'},
   {path: 'login', component:LoginComponent, canActivate: [SecureInnerPagesGuard]},
-  {path: 'dashboard', component:DashboardComponent, canActivate: [AuthGuard]}
+  {path: 'dashboard', component:DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'show-survey/:key',component:ShowSurveyComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

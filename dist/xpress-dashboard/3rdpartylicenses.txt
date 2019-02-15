@@ -784,6 +784,9 @@ MIT
 
 firebase/firestore
 
+@angular/forms
+MIT
+
 ngx-pagination
 MIT
 The MIT License (MIT)

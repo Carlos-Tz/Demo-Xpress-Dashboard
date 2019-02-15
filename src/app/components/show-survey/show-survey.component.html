@@ -1,0 +1,48 @@
+<div class="row container">
+  <div class="col s12">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">{{name}}</span>
+        <div>
+            <p>1a.-Atención de su Asesor Service Xpress.
+            <a class="btn-floating btn-small waves-effect waves-light teal">{{ group1 }}</a></p>
+        </div>
+        <div>
+            <p>1b.-Seguimiento y comunicación del Asesor Service Xpress a lo largo de la reparación del vehículo.
+              <a class="btn-floating btn-small waves-effect waves-light teal">{{ group1b }}</a></p>
+        </div>
+        <div>
+            <p>1c.-Tiempo que Ud. y/o su vehículo estuvieron en la concesionaria.
+              <a class="btn-floating btn-small waves-effect waves-light teal">{{ group1c }}</a></p>
+        </div>
+        <div>
+            <p>Comentarios adicionales: </p>
+            <p> {{ group1d }}</p>
+        </div>
+        <div>
+            <p>2.-¿Cuál es su nivel de satisfacción con las instalaciones, comodidad, limpieza y amenidaddes ofrecidas por la concesionaria?
+              <a class="btn-floating btn-small waves-effect waves-light teal">{{ group2 }}</a></p>
+        </div>
+        <div>
+            <p>3.-Califique su experiencia del servicio en general recibido en Service Xpress.
+              <a class="btn-floating btn-small waves-effect waves-light teal">{{ group3 }}</a></p>
+        </div>
+        <div>
+            <p>Si califico con 8 o menos, ¿Qué se pudo haber hecho mejor para lograr calificación de 10?</p>
+              <p>{{ group3b }}</p>
+        </div><br>
+        <div >
+            <p>4.-¿Qué tan probable es que recomiende Service Xpress de esta concesionaria a un familiar o amigo?
+              <a class="btn-floating btn-small waves-effect waves-light teal">{{ group4 }}</a></p>
+        </div>
+        <div>
+            <p>5.-Conocio a Service Xpress a través de algún medio publicitario.</p> 
+            <p>{{ group5 }}</p>
+        </div>
+      </div>
+      <div class="card-action">
+        <a (click)="goBack()" class="waves-effect waves-light btn">Volver</a>
+      </div>
+    </div>
+  </div>
+</div>

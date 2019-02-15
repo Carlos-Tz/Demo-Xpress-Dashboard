@@ -18,4 +18,9 @@ export class SurveyService {
     );
     return this.surveysList;
   }
+
+  getSurvey(key: string){
+    this.surveyObject = this.db.object('surveys-list/'+ key);
+    return this.surveyObject;
+  }
 }

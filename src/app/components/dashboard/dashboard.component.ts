@@ -10,16 +10,17 @@ import { AuthService } from '../../shared/auth.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  p: number = 1;
   Survey: Survey[];
-  hideNoSurvey: boolean = false;
-  noData: boolean = false;
-  filter_key = '';
+  hideNoSurvey = false;
+  noData = false;
 
   public pieChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   public pieChartLabels2 = ['Radio', 'Facebook', 'Web', 'Email', 'Otro', 'Ninguno'];
   public pieChartType = 'pie';
-  public colors = [{ backgroundColor: ['#f44336', '#40c4ff', '#ff9800', '#9575cd ', '#ffeb3b', '#795548', '#cddc39', '#81c784', '#607d8b', '#4caf50'] }];
+  public colors = [
+    { backgroundColor:
+      ['#f44336', '#40c4ff', '#ff9800', '#9575cd ', '#ffeb3b', '#795548', '#cddc39', '#81c784', '#607d8b', '#4caf50'] 
+    }];
   public colors2 = [{ backgroundColor: ['#f44336', '#40c4ff', '#ff9800', '#9575cd ', '#ffeb3b', '#795548'] }];
 
 
@@ -39,6 +40,10 @@ export class DashboardComponent implements OnInit {
   public group3 = 'group3';
   public group4 = 'group4';
   public group5 = 'group5';
+  dtOptions = {};
+  date = new Date();
+  fecha: string;
+  data_ = false;
 
   constructor(
     public surveyApi: SurveyService,
@@ -46,23 +51,58 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let s = this.surveyApi.GetSurveysList();
-    s.snapshotChanges().subscribe(data => {
+    this.fecha = this.date.getDate() + '/' + this.date.getMonth() + '/' + this.date.getFullYear();
+    this.surveyApi.GetSurveysList().snapshotChanges().subscribe(data => {
       this.Survey = [];
-      data.reverse();
       data.forEach(item => {
         let surv = item.payload.toJSON();
         surv['$key'] = item.key;
         this.Survey.push(surv as Survey);
         this.l1.push(surv);
       });
+      this.data_ = true;
       this.calc();
-    })
+    });
 
+    this.dtOptions = {
+      dom: 'Bfrtip',
+      // Configure the buttons
+      buttons: [
+        /* {
+          extend: 'print',
+          title: 'serviceXpress-' + this.fecha,
+          text: 'Imprimir tabla'
+        }, */
+        {
+          extend: 'excel',
+          title: 'serviceXpress-' + this.fecha,
+          text: 'Exportar a Excel'
+        }
+      ],
+      language: {
+        paginate: {
+            first:    '«',
+            previous: '‹',
+            next:     '›',
+            last:     '»'
+        },
+        aria: {
+            paginate: {
+                first:    'Primero',
+                previous: 'Anterior',
+                next:     'Siguiente',
+                last:     'Último'
+            }
+        },
+        info: 'Mostrando _START_ a _END_ de _TOTAL_ entradas',
+        search: 'Buscar'
+      },
+      pageLength: 10
+    };
 
   }
 
-  calc() {
+  calc = () => {
     let g1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let g1b = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let g1c = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -158,9 +198,9 @@ export class DashboardComponent implements OnInit {
         case 'ninguno': g5[5]++; break;
         default: break;
       }
-    })
-    for (var _i = 0; _i < 10; _i++) {
-      let l = this.Survey.length+1;
+    });
+    for (let _i = 0; _i < 10; _i++) {
+      let l = this.Survey.length + 1;
       if (g1[_i] >= l) { g1[_i] = g1[_i] / l; }
       if (g1b[_i] >= l) { g1b[_i] = g1b[_i] / l; }
       if (g1c[_i] >= l) { g1c[_i] = g1c[_i] / l; }
